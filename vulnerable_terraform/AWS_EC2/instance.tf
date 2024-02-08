@@ -1,4 +1,4 @@
-resource "aws_instance" "my-test" {
+resource "aws_instance" "a-test" {
   ami           = var.AMIS[var.AWS_REGION]
   instance_type = var.INSTANCE_TYPE
   tags = {
@@ -7,7 +7,7 @@ resource "aws_instance" "my-test" {
   }
 
   # the VPC subnet
-  subnet_id = aws_subnet.test-public-1.id
+  subnet_id = aws_subnet.a-test-public-1.id
 
   # instance profile
   iam_instance_profile = aws_iam_instance_profile.permissive_ec2.name
@@ -39,11 +39,11 @@ resource "aws_ebs_volume" "ebs-volume-1" {
 resource "aws_volume_attachment" "ebs-volume-1-attachment" {
   device_name = "/dev/xvdh"
   volume_id   = aws_ebs_volume.ebs-volume-1.id
-  instance_id = aws_instance.test.id
+  instance_id = aws_instance.a-test.id
 }
 
 output "bastion_host_public_ip" {
-  value = aws_instance.test.public_ip
+  value = aws_instance.a-test.public_ip
 }
 
 resource "random_string" "ec2_suffix" {
