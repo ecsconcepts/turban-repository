@@ -39,7 +39,7 @@ resource "aws_ebs_volume" "ebs-volume-1" {
 resource "aws_volume_attachment" "ebs-volume-1-attachment" {
   device_name = "/dev/xvdh"
   volume_id   = aws_ebs_volume.ebs-volume-1.id
-  instance_id = aws_instance.wiz-test.id
+  instance_id = aws_instance.test.id
 }
 
 output "bastion_host_public_ip" {
